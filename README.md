@@ -1,27 +1,69 @@
-# AngularTestMigrated
+# Survey Lists
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.12.
+## Environment 
 
-## Development server
+- Angular CLI Version: 10.0.4
+- Angular Core Version: 10.0.4
+- Node Version: 12.18.3
+- Default Port: 8000
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Application Demo:
 
-## Code scaffolding
+![](https://hrcdn.net/s3_pub/istreet-assets/mCXTOy7HP5xco-3X1m5UFA/survey-list.gif)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Functionality Requirements
 
-## Build
+There are 2 components in the app:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Filters component: A reusable component that is used to define the filters for the final survey list to be rendered. It accepts the filter type and the list of filter values as input, and outputs the selected filter based on the criteria mentioned below.
 
-## Running unit tests
+- SurveyList component: This component is used to render a list of surveys. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The app should have the following functionalities:
 
-## Running end-to-end tests
+- The app should render the list of Survey objects. - The interface for an object is defined in the file `src/types/Survey.ts` having the following structure:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+  interface Survey {
+    title: string;
+    category: string; // Possible values - 'Workplace', 'Development' or 'Hardware'
+    status: string; // // Possible values - 'Active', or 'Completed'
+    label: string;
+  }
+```
 
-## Further help
+- In the left pane, we have 2 Filters component instances -
+  - The first filter instance filters the surveys based on the `status` property. Clicking on a filter should render the survey objects for which the `status` value matches the filter value. In case `All` is clicked, this filter should have no effect and should not filter out any surveys.
+  - The second filter instance filters the surveys based on the `category` property. Clicking on a filter should render the survey objects for which the `category` value matches the filter value. - The first click selects a filter, second consecutive click unselects the filter.
+  - If both the above mentioned filters have a value selected, the surveys should be filtered based on the combination of both the filters. For eg: If the first filter has Active selected and the second filter has Completed selected, show all `Active` surveys whose category is `Completed` in the right pane.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- In the right pane, we have the SurveyList component that renders the filtered survey items in a list item `<li>` inside the list `<ul data-test-id="survey-list"></ul>`.
+
+- Initially, all surveys should be rendered in the SurveyList component.
+
+## Testing Requirements
+
+- The `<ul>` containing `status` filters should have the data-test-id attribute `status-list`.
+
+- The `<ul>` containing `category` filters should have the data-test-id attribute `category-list`.
+
+- The output `<ul>` should have the data-test-id attribute `survey-list`.
+
+## Project Specifications
+
+**Read-only Files**
+- src/app/app.component.spec.ts
+
+**Commands**
+- run: 
+```bash
+bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm start
+```
+- install: 
+```bash
+bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm install
+```
+- test: 
+```bash
+bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm test
+```
