@@ -1,11 +1,66 @@
 .sidebar {
-  border-right: 1px solid rgba(0, 0, 0, .12);
-  font-size: 14px;
-  overflow-y: auto;
-  transition: transform .15s cubic-bezier(.4, 0, .2, 1);
-  width: 320px;
-  z-index: 5;
-  margin: 0;
-  padding: 0 0 10px 0;
-  height: calc(100vh - 60px);
+    border-right: 1px solid rgba(0, 0, 0, .12);
+    font-size: 14px;
+    overflow-y: auto;
+    transition: transform .15s cubic-bezier(.4, 0, .2, 1);
+    width: 320px;
+    z-index: 5;
+    margin: 0;
+    padding: 0 0 10px 0;
+    height: calc(100vh - 60px);
+}
+
+.container
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+
+    .header
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 20px;
+        padding-right: 0;
+        margin-right: 20px;
+        height: 60px;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+
+        .title
+        {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .input-field
+        {
+            width: 250px;
+            height: 40px;
+            border-radius: 20px;
+        }
+    }
+
+    .body
+    {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 20px;
+
+        .card-tile
+        {
+            padding: 4px 12px;
+            border-radius: 16px;
+            border: 1px solid #ddd;
+            margin-right: 12px;
+            color: #666;
+        }
+    }
 }
