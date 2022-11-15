@@ -15,4 +15,7 @@ export class Filters implements OnInit {
   ngOnInit() {
 
   }
+  NewFunction(i:any){
+    this.onFilterSelected.emit(i);
+  }
 }
