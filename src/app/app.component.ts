@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Survey} from "../types/Survey";
+import { Component, OnInit } from '@angular/core';
+import { Survey } from "../types/Survey";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,10 @@ export class AppComponent implements OnInit {
 
   status = 'status';
   category = "category";
+  activeFilters: { status: string; category: string; } = {
+    status: null,
+    category: null,
+  };
 
   surveyList: Survey[] = [
     {
@@ -34,13 +38,30 @@ export class AppComponent implements OnInit {
       status: "Completed",
       label: "Personal",
     }
-  ]
+  ];
+
+  tempSurveyList: Survey[];
 
   ngOnInit() {
-
+    this.filteredList = JSON.parse(JSON.stringify(this.surveyList));
   }
 
   onFilterSelected(filter: string, type: string) {
 
+    if (type === 'status') {
+      this.activeFilters.status = filter === 'All' ? null : filter;
+    }
+    else {
+      this.activeFilters.category = filter;
+    }
+    this.updateSurveyList();
+  }
+
+  updateSurveyList(): void {
+    this.filteredList = JSON.parse(JSON.stringify(this.surveyList));
+    if (!!this.activeFilters.status)
+      this.filteredList = this.surveyList.filter((survey) => survey.status === this.activeFilters.status);
+    if (!!this.activeFilters.category)
+      this.filteredList = this.filteredList.filter((survey) => survey.category === this.activeFilters.category);
   }
 }

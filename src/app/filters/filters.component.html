@@ -2,7 +2,7 @@
   [attr.data-test-id]="this.filterType === 'status' ? 'status-list' : 'category-list'"
 >
   <span class="section-title">{{this.filterType === 'status' ? 'Status': 'Category'}}</span>
-  <li *ngFor="let filter of filterValues;" class="sidebar-item"
+  <li *ngFor="let filter of filterValues;" class="sidebar-item" (click)="onFilterSelect(filter)"
       [ngClass]="{'active': selectedFilter === filter}">
     <a>{{filter}}</a>
   </li>
