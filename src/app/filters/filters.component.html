@@ -4,6 +4,6 @@
   <span class="section-title">{{this.filterType === 'status' ? 'Status': 'Category'}}</span>
   <li *ngFor="let filter of filterValues;" class="sidebar-item"
       [ngClass]="{'active': selectedFilter === filter}">
-    <a>{{filter}}</a>
+    <a (click)="NewFunction(filter)">{{filter}}</a>
   </li>
 </ul>

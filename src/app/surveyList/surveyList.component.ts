@@ -9,8 +9,7 @@ import {Survey} from "../../types/Survey";
 
 export class SurveyList implements OnInit {
   @Input() surveyList: Survey[];
-
   ngOnInit() {
-
+    console.log(this.surveyList); 
   }
 }
