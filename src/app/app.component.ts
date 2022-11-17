@@ -38,9 +38,41 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+    this.filteredList = JSON.parse(JSON.stringify(this.surveyList))
+
   }
 
   onFilterSelected(filter: string, type: string) {
 
+
+    if (type === 'status') {
+
+      this.filteredList.splice(0)
+
+      this.surveyList.forEach(element => {
+
+        if (filter === element.status){
+          this.filteredList.push(element)
+        }
+        if (filter === 'All'){
+          this.filteredList = JSON.parse(JSON.stringify(this.surveyList))
+        } 
+      });
+
+    }
+
+    if (type === 'category') {
+
+      this.filteredList.splice(0)
+
+      this.surveyList.forEach(element => {
+
+        if (filter === element.category){
+          this.filteredList.push(element)
+        }
+
+      });
+
+    }
   }
 }
